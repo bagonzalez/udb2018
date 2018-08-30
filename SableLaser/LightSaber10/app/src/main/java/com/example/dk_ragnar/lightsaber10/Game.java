@@ -12,6 +12,8 @@ import android.util.Log;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.dk_ragnar.lightsaber10.Models.Shot;
+
 import java.util.ArrayList;
 
 public class Game extends AppCompatActivity implements SensorEventListener {
@@ -26,6 +28,7 @@ public class Game extends AppCompatActivity implements SensorEventListener {
     private float proximityCalibratedMax = Float.MIN_VALUE;
     Boolean estado=false;
     ArrayList<Integer> generados;
+    ArrayList<Shot> disparos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +49,13 @@ public class Game extends AppCompatActivity implements SensorEventListener {
 
         generados = new ArrayList<>();
         for(int i=1; i<=10; i++ ){
-            int numeroaletorio = (int) (Math.random() * 1);
-            generados.add(numeroaletorio);
-            Log.d("UDB",numeroaletorio+"");
+            //int numeroaletorio = (int) (Math.random() * 1);
+            generados.add(1);
+            generados.add(0);
+            generados.add(1);
+            generados.add(0);
+            generados.add(1);
+
         }
 
         proximidad = sm.getDefaultSensor(Sensor.TYPE_PROXIMITY);
@@ -94,6 +101,7 @@ public class Game extends AppCompatActivity implements SensorEventListener {
 
                                 } finally {
                                     sonidoFondo.start();
+                                    playNow();
                                 }
                             }
                         };
@@ -119,15 +127,48 @@ public class Game extends AppCompatActivity implements SensorEventListener {
                 if(estado==true){
                     if (z > 10) {
                         movimiento1.start();
-                        disparoizquierda.start();
+                        //disparoizquierda.start();
                     }
                     if (z < -10) {
                         movimiento2.start();
-                        disparoderecha.start();
+                        //disparoderecha.start();
                     }
                 }
                 break;
         }
+    }
+
+    private void playNow() {
+        for(int i : generados){
+            if(i == 0){
+                Shot disparo = new Shot();
+                disparo.type = "left";
+                disparo.sound = "disparoizquierda";
+                disparos.add(disparo);
+            }else if(i == 1){
+                Shot disparo = new Shot();
+                disparo.type = "right";
+                disparo.sound = "disparoderecha";
+                disparos.add(disparo);
+            }
+        }
+
+        //Treat de inicio de juego
+        Thread timer = new Thread() {
+            public void run() {
+                try {
+                    sleep(1000);
+
+                } catch (InterruptedException e) {
+
+                } finally {
+
+                }
+            }
+        };
+        timer.start();
+
+
     }
 
     @Override
