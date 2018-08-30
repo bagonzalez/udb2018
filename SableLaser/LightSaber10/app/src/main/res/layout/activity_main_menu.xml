@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#000"
+    tools:context="com.example.dk_ragnar.lightsaber10.MainMenu">
+
+    <TextView
+        android:layout_margin="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="25dp"
+        android:text="MenuTemporal"/>
+
+    <Button
+        android:id="@+id/optionOnlySaber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#181818"
+        android:textColor="#fff"
+        android:layout_marginBottom="5dp"
+        android:text="Sable Laser"/>
+
+    <Button
+        android:id="@+id/optionPlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#181818"
+        android:textColor="#fff"
+        android:text="Jugar"/>
+
+</LinearLayout>
