@@ -1,5 +1,6 @@
 package main;
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -15,6 +16,11 @@ public class Ventana extends JFrame implements Runnable{
 	
 	private BufferStrategy bs;
 	private Graphics g;
+	
+	private final int FPS = 60;
+	private double TARGETTIME = 1000000000/FPS; //1 segundo en nano segundo
+	private double delta = 0;
+	private int AVERAGEFPS = FPS; //mostrara a cuantos FPS corre el juego
 	
 	public Ventana()
 	{
@@ -57,7 +63,10 @@ public class Ventana extends JFrame implements Runnable{
 		
 		//-------iniciaDibujo------------
 		g.clearRect(0, 0, WIDTH, HEIGHT);
-		g.drawRect(x, 0, 100, 100); //dibuja un rectangulo
+		
+		g.setColor(Color.BLACK);
+		
+		g.drawString(""+AVERAGEFPS,10,10);
 		
 		//-------terminaDibujo-----------
 		
@@ -68,11 +77,36 @@ public class Ventana extends JFrame implements Runnable{
 	@Override
 	public void run() {
 		
+		long now = 0;
+		long lastTime = System.nanoTime();
+		int frames = 0;
+		long time = 0;
+		
 		//while se encargara de la posicion de los objetos
 		while(running)
 		{
-			actualizar();
-			dibujar();
+			now = System.nanoTime();
+			delta += (now - lastTime)/TARGETTIME;
+			time += (now - lastTime);
+			lastTime = now;
+			
+			if(delta >= 1)
+			{
+				actualizar();
+				dibujar();
+				delta --;
+				frames ++;
+				//System.out.println(frames); //ver FPS en consola
+			}
+			
+			if(time >= 1000000000)
+			{
+				AVERAGEFPS = frames;
+				frames = 0;
+				time = 0;
+				
+			}
+			
 		}
 		
 		stop();
