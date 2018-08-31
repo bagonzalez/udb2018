@@ -57,7 +57,7 @@ public class Ventana extends JFrame implements Runnable{
 		
 		//-------iniciaDibujo------------
 		g.clearRect(0, 0, WIDTH, HEIGHT);
-		g.drawRect(x, 0, 100, 100);
+		g.drawRect(x, 0, 100, 100); //dibuja un rectangulo
 		
 		//-------terminaDibujo-----------
 		
