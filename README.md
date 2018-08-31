@@ -1,6 +1,6 @@
 
 # ReyPalomo
-Un investigador va a una ciudad a investigar la desaparición de las aves exóticas de la ciudad.
+Un investigador va a una ciudad a investigar la aparicion de monstruos.
 
 # Categoría
-Juego de puzzle.
+Plataformas.
