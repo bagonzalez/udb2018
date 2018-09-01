@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class Game extends AppCompatActivity implements SensorEventListener {
 
     private static final String TAG = "MainActivity";
-    private MediaPlayer sonidoEncendido, sonidoApagado, sonidoFondo, movimiento1, movimiento2, disparoderecha, disparoizquierda;
+    private MediaPlayer sonidoEncendido, sonidoApagado, sonidoFondo, movimiento1, movimiento2, disparoderecha, disparoizquierda, clash;
     SensorManager sm;
     Sensor proximidad, acelerometro;
     TextView informe;
@@ -29,6 +29,7 @@ public class Game extends AppCompatActivity implements SensorEventListener {
     Boolean estado=false;
     ArrayList<Integer> generados;
     ArrayList<Shot> disparos;
+    int colision = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,25 +45,25 @@ public class Game extends AppCompatActivity implements SensorEventListener {
         movimiento2 = MediaPlayer.create(this, R.raw.movimientoo);
         disparoderecha = MediaPlayer.create( this, R.raw.disparoderecho);
         disparoizquierda = MediaPlayer.create( this, R.raw.disparoizquierdo);
+        clash = MediaPlayer.create(this, R.raw.clash);
 
         sm = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
 
         generados = new ArrayList<>();
-        for(int i=1; i<=10; i++ ){
-            //int numeroaletorio = (int) (Math.random() * 1);
-            generados.add(1);
-            generados.add(0);
-            generados.add(1);
-            generados.add(0);
-            generados.add(1);
 
-        }
+            //int numeroaletorio = (int) (Math.random() * 1);
+            generados.add(0);
+            generados.add(0);
+            generados.add(1);
+            generados.add(1);
+            generados.add(0);
 
         proximidad = sm.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         sm.registerListener(this,proximidad,SensorManager.SENSOR_DELAY_GAME);
 
         acelerometro = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sm.registerListener(this,acelerometro,SensorManager.SENSOR_DELAY_GAME);
+        playNow();
     }
 
     @Override
@@ -101,7 +102,7 @@ public class Game extends AppCompatActivity implements SensorEventListener {
 
                                 } finally {
                                     sonidoFondo.start();
-                                    playNow();
+
                                 }
                             }
                         };
@@ -127,10 +128,12 @@ public class Game extends AppCompatActivity implements SensorEventListener {
                 if(estado==true){
                     if (z > 10) {
                         movimiento1.start();
+                        colision = -1;
                         //disparoizquierda.start();
                     }
                     if (z < -10) {
                         movimiento2.start();
+                        colision = 1;
                         //disparoderecha.start();
                     }
                 }
@@ -139,7 +142,9 @@ public class Game extends AppCompatActivity implements SensorEventListener {
     }
 
     private void playNow() {
+        disparos = new ArrayList<>();
         for(int i : generados){
+
             if(i == 0){
                 Shot disparo = new Shot();
                 disparo.type = "left";
@@ -157,12 +162,53 @@ public class Game extends AppCompatActivity implements SensorEventListener {
         Thread timer = new Thread() {
             public void run() {
                 try {
-                    sleep(1000);
+                    sleep(2000);
 
                 } catch (InterruptedException e) {
 
                 } finally {
+                    int contador = 0;
+                        for(Shot shot : disparos){
 
+                            contador += 3000;
+                            disparar(shot, contador);
+                        }
+                }
+            }
+        };
+        timer.start();
+
+
+    }
+
+    private void disparar(final Shot shot, final int sleep) {
+
+        Thread timer = new Thread() {
+            public void run() {
+                try {
+                    sleep(sleep);
+                    if(shot.sound.equals("disparoizquierda")){
+                        disparoizquierda.start();
+                        sleep(1000);
+                        if(colision == -1){
+                            clash.start();
+                            Log.d("UDB", "coliciono");
+                        }
+
+                    }else if(shot.sound.equals("disparoderecha")){
+                        disparoderecha.start();
+                        sleep(1000);
+                        if(colision == 1){
+                            clash.start();
+                            Log.d("UDB", "colisiono");
+                        }
+                    }
+
+                } catch (InterruptedException e) {
+
+                } finally {
+                    Log.d("UDB", sleep+"");
+                    colision = 0;
                 }
             }
         };
