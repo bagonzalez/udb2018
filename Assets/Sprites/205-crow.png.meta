@@ -1,13 +1,14 @@
 fileFormatVersion: 2
-guid: 7b958b73cb0a15d478038f880b47e88e
+guid: eb9e0f6fb260634418c4ea6ac32e604f
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Enemy_0
-    21300002: Enemy_1
-    21300004: Enemy_2
-    21300006: Enemy_3
-    21300008: Enemy_4
-    21300010: Enemy_5
+    21300000: 205-crow_0
+    21300002: 205-crow_1
+    21300004: 205-crow_2
+    21300006: 205-crow_3
+    21300008: 205-crow_4
+    21300010: 205-crow_5
+    21300012: 205-crow_6
   externalObjects: {}
   serializedVersion: 6
   mipmaps:
@@ -51,7 +52,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 35
+  spritePixelsToUnits: 93
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -90,13 +91,33 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_0
+      name: 205-crow_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 3
+        y: 29
+        width: 93
+        height: 59
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc32f1fdcdbd6be4094a78aa656819ff
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 205-crow_1
+      rect:
+        serializedVersion: 2
+        x: 98
         y: 0
-        width: 24
-        height: 30
+        width: 96
+        height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -104,19 +125,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 563870bdce2add046a2b29983c86ee05
+      spriteID: a46c5335220fe70439dc932f55457e9a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_1
+      name: 205-crow_2
       rect:
         serializedVersion: 2
-        x: 30
-        y: 2
-        width: 26
-        height: 30
+        x: 198
+        y: 27
+        width: 94
+        height: 58
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,19 +145,59 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8efce543c07f6984e8386e0a833a1ea9
+      spriteID: 3346c463d1073be4cb15c1692588a100
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_2
+      name: 205-crow_3
       rect:
         serializedVersion: 2
-        x: 64
+        x: 295
+        y: 28
+        width: 186
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94a2abd927b5d4b40b6c6256839fbf63
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 205-crow_4
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 28
+        width: 94
+        height: 60
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c40b1c3470d7c44ea4075d7a0786480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 205-crow_5
+      rect:
+        serializedVersion: 2
+        x: 580
         y: 0
-        width: 24
-        height: 30
+        width: 98
+        height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,19 +205,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a595e1dadc092b84a9eea10b34e0f01d
+      spriteID: 7cb6fa3fe7b8a474f833029aa3871bb8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_3
+      name: 205-crow_6
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
-        width: 24
-        height: 30
+        x: 679
+        y: 27
+        width: 93
+        height: 58
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,47 +225,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10d18808673b1364aa881d79737d2b9a
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Enemy_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 2
-        width: 24
-        height: 30
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a0e91f644196322439535a52cde822e0
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Enemy_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 24
-        height: 30
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cc199ae3b1557bb46bff06501772ec0b
+      spriteID: b45d5692909e38e4097ef43867e5dafb
       vertices: []
       indices: 
       edges: []
@@ -212,7 +233,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 476f20fd9a9395344a218ae92f63e08e
+    spriteID: bcb35912d1aa12f4b9de46f46a3438b5
     vertices: []
     indices: 
     edges: []
