@@ -15,7 +15,49 @@ public class Vector2D {
 		x = 0;
 		y = 0;
 	}
+	
+	public Vector2D add(Vector2D v)
+	{
+		return new Vector2D(x + v.getX(), y + v.getY());
+	}
+	
+	public Vector2D escala(double value)
+	{
+		return new Vector2D(x*value, y*value);
+	}
+	
+	public void limite(double value)
+	{
+		if(x > value)
+			x = value;
+		if(x < -value)
+			x = -value;
+		
+		if(y > value)
+			y = value;
+		if(y < -value)
+			y = -value;
+		
 
+	}
+	
+	public Vector2D normalize()
+	{
+		return  new Vector2D(x/getMagnitude(), y/getMagnitude());
+	}
+
+	public double getMagnitude()
+	{
+		return Math.sqrt(x*x + y*y);
+		
+	}
+	
+	public Vector2D setDirection(Double angulo)
+	{
+		return new Vector2D(Math.cos(angulo)*getMagnitude(), Math.sin(angulo)*getMagnitude());
+		
+	}
+	
 	public double getX() {
 		return x;
 	}
