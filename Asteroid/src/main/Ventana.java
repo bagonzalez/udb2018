@@ -7,7 +7,9 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import estados.GameState;
 import graficos.Assets;
+import input.KeyBoard;
 
 public class Ventana extends JFrame implements Runnable{
 	
@@ -24,6 +26,9 @@ public class Ventana extends JFrame implements Runnable{
 	private double delta = 0;
 	private int AVERAGEFPS = FPS;
 	
+	private GameState gameState;
+	private KeyBoard keyBoard;
+	
 	public Ventana()
 	{
 		setTitle("Space Ship Game");
@@ -34,6 +39,7 @@ public class Ventana extends JFrame implements Runnable{
 		setVisible(true);
 		
 		canvas = new Canvas();
+		keyBoard = new KeyBoard();
 		
 		canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		canvas.setMaximumSize(new Dimension(WIDTH, HEIGHT));
@@ -41,6 +47,7 @@ public class Ventana extends JFrame implements Runnable{
 		canvas.setFocusable(true);
 		
 		add(canvas);
+		canvas.addKeyListener(keyBoard);
 		
 	}
 	
@@ -53,7 +60,8 @@ public class Ventana extends JFrame implements Runnable{
 	
 	
 	private void update(){
-		
+		keyBoard.update();
+		gameState.update();
 	}
 
 	private void draw(){
@@ -72,8 +80,8 @@ public class Ventana extends JFrame implements Runnable{
 		
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		g.drawImage(Assets.jugador, 100, 100, null);
-		
+		gameState.draw(g);
+				
 		g.drawString(""+AVERAGEFPS, 10, 20);
 		
 		//---------------------
@@ -84,6 +92,7 @@ public class Ventana extends JFrame implements Runnable{
 	private	void init()
 	{
 		Assets.init();
+		gameState = new GameState();
 	}
 	
 	@Override
