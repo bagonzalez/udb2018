@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
+import estados.GameState;
 import graficos.Assets;
 import input.KeyBoard;
 import main.Ventana;
@@ -17,17 +18,38 @@ public class Player extends MovingObject{
 	private final double ACC = 0.2; //cuanto acelera la nave
 	private final double DELTAANGLE = 0.1;
 	private boolean acelerando = false;
+	private GameState gameState;	
 	
-	public Player(Vector2D posicion, Vector2D velocidad, double maxVel, BufferedImage textura) {
+	private long time, lastTime;
+	
+	public Player(Vector2D posicion, Vector2D velocidad, double maxVel, BufferedImage textura, GameState gameState) {
 		super(posicion, velocidad, maxVel, textura);
+		this.gameState = gameState;
 		heading = new Vector2D(0, 1);
 		aceleracion = new Vector2D();
+		time = 0;
+		lastTime = System.currentTimeMillis();
 	}
 
 	
 	@Override
 	public void update() 
 	{
+		time += System.currentTimeMillis() - lastTime;
+		lastTime = System.currentTimeMillis();
+		
+		if(KeyBoard.SHOOT && time > 200)
+		{
+			gameState.getMovingObjects().add(0,new Laser(
+					getCenter().add(heading.escala(width)),
+					heading,
+					10,
+					angulo,
+					Assets.redLaser
+					));
+			time = 0;
+		}
+		
 		
 		if(KeyBoard.RIGHT)
 			angulo += DELTAANGLE;
@@ -94,6 +116,8 @@ public class Player extends MovingObject{
 		g2d.drawImage(Assets.jugador, at, null);
 	}
 	
-	
+	public Vector2D getCenter(){
+		return new Vector2D(posicion.getX() + width/2, posicion.getY() + height/2);
 
+	}
 }
