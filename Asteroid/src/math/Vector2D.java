@@ -26,19 +26,13 @@ public class Vector2D {
 		return new Vector2D(x*value, y*value);
 	}
 	
-	public void limite(double value)
+	public Vector2D limite(double value)
 	{
-		if(x > value)
-			x = value;
-		if(x < -value)
-			x = -value;
-		
-		if(y > value)
-			y = value;
-		if(y < -value)
-			y = -value;
-		
-
+		if(getMagnitude() > value)
+		{
+			return this.normalize().escala(value);
+		}
+		return this;
 	}
 	
 	public Vector2D normalize()
