@@ -7,6 +7,8 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import graficos.Assets;
+
 public class Ventana extends JFrame implements Runnable{
 	
 	public static final int WIDTH = 800, HEIGHT = 600;
@@ -49,9 +51,9 @@ public class Ventana extends JFrame implements Runnable{
 	}
 	
 	
-	int x = 0;
+	
 	private void update(){
-		x++;
+		
 	}
 
 	private void draw(){
@@ -66,10 +68,11 @@ public class Ventana extends JFrame implements Runnable{
 		g = bs.getDrawGraphics();
 		
 		//-----------------------
-		
-		g.clearRect(0, 0, WIDTH, HEIGHT);
-		
 		g.setColor(Color.BLACK);
+		
+		g.fillRect(0, 0, WIDTH, HEIGHT);
+		
+		g.drawImage(Assets.jugador, 100, 100, null);
 		
 		g.drawString(""+AVERAGEFPS, 10, 20);
 		
@@ -78,6 +81,10 @@ public class Ventana extends JFrame implements Runnable{
 		bs.show();
 	}
 	
+	private	void init()
+	{
+		Assets.init();
+	}
 	
 	@Override
 	public void run() {
@@ -86,6 +93,8 @@ public class Ventana extends JFrame implements Runnable{
 		long lastTime = System.nanoTime();
 		int frames = 0;
 		long time = 0;
+		
+		init();
 		
 		while(running)
 		{
