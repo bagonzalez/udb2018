@@ -10,7 +10,7 @@ import butterknife.OnClick;
 
 public class MainMenu extends AppCompatActivity {
 
-    Button botonJugar;
+    Button botonJugar, onlysaber;
 
     @OnClick(R.id.optionOnlySaber)
     public void onlySaber(View view){
@@ -30,11 +30,20 @@ public class MainMenu extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         botonJugar = (Button) findViewById(R.id.optionPlay);
+        onlysaber = (Button) findViewById(R.id.optionOnlySaber);
 
         botonJugar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainMenu.this, Game.class);
+                startActivity(intent);
+            }
+        });
+
+        onlysaber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainMenu.this, MainActivity.class);
                 startActivity(intent);
             }
         });

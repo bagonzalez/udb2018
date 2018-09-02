@@ -8,21 +8,29 @@
     android:background="#000"
     tools:context="com.example.dk_ragnar.lightsaber10.MainMenu">
 
-    <TextView
-        android:layout_margin="25dp"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textColor="#fff"
-        android:textSize="25dp"
-        android:text="MenuTemporal"/>
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/logo" />
+    </RelativeLayout>
+
 
     <Button
         android:id="@+id/optionOnlySaber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#181818"
-        android:textColor="#fff"
+        android:textColor="#faea00"
+        android:textSize="45dp"
+        android:textStyle="bold"
+        android:padding="10dp"
         android:layout_marginBottom="5dp"
         android:text="Sable Laser"/>
 
@@ -30,8 +38,11 @@
         android:id="@+id/optionPlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:textColor="#faea00"
+        android:textSize="65dp"
         android:background="#181818"
-        android:textColor="#fff"
         android:text="Jugar"/>
 
 </LinearLayout>

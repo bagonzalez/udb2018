@@ -111,12 +111,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             //Log.d(TAG,"UDB"+estado);
             if(estado==true){
                 if (z > 10) {
-                    //movimiento1.start();
-                    disparoizquierda.start();
+                    movimiento1.start();
+                    //disparoizquierda.start();
                 }
                 if (z < -10) {
-                    //movimiento2.start();
-                    disparoderecha.start();
+                    movimiento2.start();
+                    //disparoderecha.start();
                 }
             }
             break;
