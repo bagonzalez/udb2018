@@ -1,5 +1,6 @@
 package com.example.dk_ragnar.lightsaber10;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -7,6 +8,8 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,17 +25,21 @@ public class Game extends AppCompatActivity implements SensorEventListener {
 
     private static final String TAG = "MainActivity";
     private MediaPlayer sonidoEncendido, sonidoApagado, sonidoFondo, movimiento1, movimiento2, disparoderecha, disparoizquierda, clash;
-    SensorManager sm;
-    Sensor proximidad, acelerometro;
-    TextView informe, txtscore;
-    RelativeLayout imagenFondo;
-    String mostrar;
+    private SensorManager sm;
+    private Sensor proximidad, acelerometro;
+    private TextView informe, txtscore;
+    private RelativeLayout imagenFondo;
+    private String mostrar;
     private float proximityCalibratedMax = Float.MIN_VALUE;
-    Boolean estado=false;
-    ArrayList<Integer> generados;
-    ArrayList<Shot> disparos;
-    int colision = 0;
-    int score = 0;
+    private Boolean estado=false;
+    private ArrayList<Integer> generados;
+    private ArrayList<Shot> disparos;
+    private int colision = 0;
+    private int score = 0;
+    private int contador = 0;
+
+    Thread hilodisparar;
+    Thread hilotermino;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +151,7 @@ public class Game extends AppCompatActivity implements SensorEventListener {
                         if(colision == 0){
                             colision = -1;
                         }
+
                         //disparoizquierda.start();
                     }
                     if (z < -10) {
@@ -184,13 +192,13 @@ public class Game extends AppCompatActivity implements SensorEventListener {
                 } catch (InterruptedException e) {
 
                 } finally {
-                    int contador = 0;
-                        for(Shot shot : disparos){
 
-                            contador += 3000;
-                            disparar(shot, contador);
-                        }
-                        yaterminojoven(contador);
+                    for(Shot shot : disparos){
+
+                        contador += 3000;
+                        disparar(shot, contador);
+                    }
+                    yaterminojoven(contador);
                 }
             }
         };
@@ -198,11 +206,11 @@ public class Game extends AppCompatActivity implements SensorEventListener {
 
     }
 
-    private void yaterminojoven(final int contador) {
-        Thread timer = new Thread() {
+    private void yaterminojoven(final int tmpcontador) {
+        hilotermino = new Thread() {
             public void run() {
                 try {
-                    sleep(contador+2000);
+                    sleep(tmpcontador+2000);
 
                 } catch (InterruptedException e) {
 
@@ -210,15 +218,17 @@ public class Game extends AppCompatActivity implements SensorEventListener {
                     Intent intent = new Intent(Game.this, ScoreResult.class);
                     intent.putExtra("score", score);
                     startActivity(intent);
+                    contador = 0;
+                    Game.this.finish();
                 }
             }
         };
-        timer.start();
+        hilotermino.start();
     }
 
     private void disparar(final Shot shot, final int sleep) {
 
-        Thread timer = new Thread() {
+        hilodisparar = new Thread() {
             public void run() {
                 try {
                     sleep(sleep);
@@ -251,7 +261,7 @@ public class Game extends AppCompatActivity implements SensorEventListener {
                 }
             }
         };
-        timer.start();
+        hilodisparar.start();
 
 
     }
@@ -278,5 +288,10 @@ public class Game extends AppCompatActivity implements SensorEventListener {
     protected void onStop() {
         super.onStop();
         sonidoFondo.stop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
