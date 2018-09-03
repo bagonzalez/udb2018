@@ -8,12 +8,15 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 
 import estados.GameState;
+import gameObjects.Constants;
 import graficos.Assets;
 import input.KeyBoard;
 
 public class Ventana extends JFrame implements Runnable{
 	
-	public static final int WIDTH = 800, HEIGHT = 600;
+	
+	private static final long serialVersionUID = 1L;
+	
 	private Canvas canvas;
 	private Thread thread;
 	private boolean running = false;
@@ -31,24 +34,24 @@ public class Ventana extends JFrame implements Runnable{
 	
 	public Ventana()
 	{
-		setTitle("Space Ship Game");
-		setSize(WIDTH, HEIGHT);
+		setTitle("Asteroid");
+		setSize(Constants.WIDTH, Constants.HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);
-		setVisible(true);
+		
 		
 		canvas = new Canvas();
 		keyBoard = new KeyBoard();
 		
-		canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		canvas.setMaximumSize(new Dimension(WIDTH, HEIGHT));
-		canvas.setMinimumSize(new Dimension(WIDTH, HEIGHT));
+		canvas.setPreferredSize(new Dimension(Constants.WIDTH, Constants.HEIGHT));
+		canvas.setMaximumSize(new Dimension(Constants.WIDTH, Constants.HEIGHT));
+		canvas.setMinimumSize(new Dimension(Constants.WIDTH, Constants.HEIGHT));
 		canvas.setFocusable(true);
 		
 		add(canvas);
 		canvas.addKeyListener(keyBoard);
-		
+		setVisible(true);
 	}
 	
 	
@@ -56,7 +59,6 @@ public class Ventana extends JFrame implements Runnable{
 	public static void main(String[] args) {
 		new Ventana().start();
 	}
-	
 	
 	
 	private void update(){
@@ -76,24 +78,29 @@ public class Ventana extends JFrame implements Runnable{
 		g = bs.getDrawGraphics();
 		
 		//-----------------------
+		
 		g.setColor(Color.BLACK);
 		
-		g.fillRect(0, 0, WIDTH, HEIGHT);
+		g.fillRect(0, 0, Constants.WIDTH, Constants.HEIGHT);
 		
 		gameState.draw(g);
-				
+		
+		g.setColor(Color.WHITE);
+		
 		g.drawString(""+AVERAGEFPS, 10, 20);
 		
 		//---------------------
+		
 		g.dispose();
 		bs.show();
 	}
 	
-	private	void init()
+	private void init()
 	{
 		Assets.init();
 		gameState = new GameState();
 	}
+	
 	
 	@Override
 	public void run() {
@@ -151,7 +158,4 @@ public class Ventana extends JFrame implements Runnable{
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
 }

@@ -1,7 +1,6 @@
 package math;
 
 public class Vector2D {
-	
 	private double x,y;
 	
 	public Vector2D(double x, double y)
@@ -14,42 +13,49 @@ public class Vector2D {
 	{
 		x = 0;
 		y = 0;
-	}
+	}	
 	
 	public Vector2D add(Vector2D v)
 	{
 		return new Vector2D(x + v.getX(), y + v.getY());
 	}
 	
-	public Vector2D escala(double value)
+	public Vector2D subtract(Vector2D v)
+	{
+		return new Vector2D(x - v.getX(), y - v.getY());
+	}
+	
+	public Vector2D scale(double value)
 	{
 		return new Vector2D(x*value, y*value);
 	}
 	
-	public Vector2D limite(double value)
+	public Vector2D limit(double value)
 	{
 		if(getMagnitude() > value)
 		{
-			return this.normalize().escala(value);
+			return this.normalize().scale(value);
 		}
 		return this;
 	}
 	
 	public Vector2D normalize()
 	{
-		return  new Vector2D(x/getMagnitude(), y/getMagnitude());
+		double magnitude = getMagnitude();
+		
+		return new Vector2D(x / magnitude, y / magnitude);
 	}
-
+	
 	public double getMagnitude()
 	{
 		return Math.sqrt(x*x + y*y);
-		
 	}
 	
-	public Vector2D setDirection(Double angulo)
+	public Vector2D setDirection(double angle)
 	{
-		return new Vector2D(Math.cos(angulo)*getMagnitude(), Math.sin(angulo)*getMagnitude());
+		double magnitude = getMagnitude();
 		
+		return new Vector2D(Math.cos(angle)*magnitude, Math.sin(angle)*magnitude);
 	}
 	
 	public double getX() {
@@ -67,5 +73,7 @@ public class Vector2D {
 	public void setY(double y) {
 		this.y = y;
 	}
-
+	
+	
 }
+

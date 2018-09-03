@@ -6,29 +6,25 @@ import java.awt.image.BufferedImage;
 import math.Vector2D;
 
 public abstract class GameObject {
+	protected BufferedImage texture;
+	protected Vector2D position;
 	
-	//posicion y textura
-	
-	protected BufferedImage textura;
-	protected Vector2D posicion;
-	
-	public GameObject(Vector2D posicion, BufferedImage textura)
+	public GameObject(Vector2D position, BufferedImage texture)
 	{
-		this.posicion = posicion;
-		this.textura = textura;
+		this.position = position;
+		this.texture = texture;
 	}
 	
 	public abstract void update();
 	
 	public abstract void draw(Graphics g);
 
-	public Vector2D getPosicion() {
-		return posicion;
+	public Vector2D getPosition() {
+		return position;
 	}
 
-	public void setPosicion(Vector2D posicion) {
-		this.posicion = posicion;
+	public void setPosition(Vector2D position) {
+		this.position = position;
 	}
-	
 	
 }
