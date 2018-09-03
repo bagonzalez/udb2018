@@ -26,7 +26,7 @@ public abstract class MovingObject extends GameObject{
 		height = texture.getHeight();
 		angle = 0;
 		
-	}
+	} 
 	
 	protected void collidesWith(){
 		
@@ -50,6 +50,7 @@ public abstract class MovingObject extends GameObject{
 	private void objectCollision(MovingObject a, MovingObject b){
 		
 		if(!(a instanceof Meteor && b instanceof Meteor)){
+			gameState.playExplosion(getCenter());
 			a.Destroy();
 			b.Destroy();
 		}

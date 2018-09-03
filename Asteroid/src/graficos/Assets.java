@@ -14,12 +14,16 @@ public class Assets {
 	
 	public static BufferedImage blueLaser, greenLaser, redLaser;
 	
-	// Meteors
+	// Meteoros
 	
 	public static BufferedImage[] bigs = new BufferedImage[4];
 	public static BufferedImage[] meds = new BufferedImage[2];
 	public static BufferedImage[] smalls = new BufferedImage[2];
 	public static BufferedImage[] tinies = new BufferedImage[2];
+	
+	// explosion
+	
+		public static BufferedImage[] exp = new BufferedImage[9];
 
 	
 	public static void init()
@@ -45,7 +49,11 @@ public class Assets {
 		
 		for(int i = 0; i < tinies.length; i++)
 			tinies[i] = Loader.ImageLoader("/meteors/tiny"+(i+1)+".png");
+	
+		
+		for(int i = 0; i < exp.length; i++)
+			exp[i] = Loader.ImageLoader("/explosion/"+i+".png");
+		
 	}
-
 
 }

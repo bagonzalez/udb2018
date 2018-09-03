@@ -11,6 +11,7 @@ import gameObjects.Meteor;
 import gameObjects.MovingObject;
 import gameObjects.Player;
 import gameObjects.Size;
+import graficos.Animation;
 import graficos.Assets;
 import math.Vector2D;
 
@@ -18,6 +19,7 @@ public class GameState {
 	
 	private Player player;
 	private ArrayList<MovingObject> movingObjects = new ArrayList<MovingObject>();
+	private ArrayList<Animation> explosions = new ArrayList<Animation>();
 	
 	private int meteors;
 	
@@ -93,11 +95,29 @@ public class GameState {
 		meteors ++;
 	}
 	
+	//animacion del arreglo explosion
+	public void playExplosion(Vector2D position){
+		explosions.add(new Animation(
+				Assets.exp,
+				50,
+				position.subtract(new Vector2D(Assets.exp[0].getWidth()/2, Assets.exp[0].getHeight()/2))
+				));
+	}
+
 	
 	public void update()
 	{
 		for(int i = 0; i < movingObjects.size(); i++)
 			movingObjects.get(i).update();
+		
+		for(int i = 0; i < explosions.size(); i++){
+			Animation anim = explosions.get(i);
+			anim.update();
+			if(!anim.isRunning()){
+				explosions.remove(i);
+			}
+		}
+
 		
 		for(int i = 0; i < movingObjects.size(); i++)
 			if(movingObjects.get(i) instanceof Meteor)
@@ -115,6 +135,14 @@ public class GameState {
 		
 		for(int i = 0; i < movingObjects.size(); i++)
 			movingObjects.get(i).draw(g);
+		
+		for(int i = 0; i < explosions.size(); i++){
+			Animation anim = explosions.get(i);
+			g2d.drawImage(anim.getCurrentFrame(), (int)anim.getPosition().getX(), (int)anim.getPosition().getY(),
+					null);
+			
+		}
+		
 	}
 
 	public ArrayList<MovingObject> getMovingObjects() {
