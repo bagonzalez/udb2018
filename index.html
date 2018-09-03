@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mi primer juego</title>
+	<script type="text/javascript" src="Js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(iniciar);
+		function iniciar()
+		{			
+			var canvas = $("#miCanvas")[0];			
+			canvas.width = window.innerWidth-20;
+            canvas.height = window.innerHeight-20;
+            accesoCanvas();
+		}
+		function accesoCanvas()
+		{
+			var canvas = $("#miCanvas")[0];
+			canvas.style.cursor = "none"
+			var cWidth = $("#miCanvas").width();
+			var cHeight = $("#miCanvas").height();
+			var ctx = canvas.getContext("2d");
+			var score = 0;
+			var timer =0;
+			var level =1;
+			var BestScore = 0;
+			var deaths = 0;
+			var player = {direction: "",posX: (cHeight/2)-20,posY: (cHeight/2)-20, width: 40, height: 40};
+			var coin = {draw: false, posX: 0, posY: 0,width: 10, height:10};
+			var numberOfEnemies = 3;
+			var numberOfEnemiesTemp=0;			
+			var enemy = new  Array();
+			crearPrimeros();
+			setBackground();	
+			init();			
+			function init(){
+				if(typeof game_loop != "undefined"){
+					clearInterval(game_loop);
+				}
+				game_loop = setInterval(main,30);
+			}						
+			function main()
+			{
+				setBackground();
+				setSkillsEnemies(numberOfEnemies);	
+				borderCollisionEnemy(numberOfEnemies);
+				enemyCollision();
+				moveEnemies(numberOfEnemies);
+				drawEnemies(numberOfEnemies);			
+				coinProbability();
+				borderCollision();
+				coinCollision();
+				increaseEnemies();
+				movePlayer();
+				drawPlayer();
+				drawCoin();	
+				drawScore();		
+
+			}
+			function crearPrimeros()
+			{
+				for(var i = 0; i < numberOfEnemies; i++)
+				{	
+					enemy[i] = {color:"",draw: false,changeX:0,changeY:0,posX: 0,posY:0, width: 30, height: 20}
+				}
+			}
+			/*$(document).keydown(function(event)
+			{
+				var key = event.which;			
+				switch(key){
+					case 39:
+						player.direction = "r";
+						break;
+					case 37:
+						player.direction = "l";
+						break;
+					case 38:
+						player.direction = "t";
+						break;
+					case 40:
+						player.direction = "d";
+						break;
+
+				}
+			});*/
+			 $(document).mousemove(function(event){
+			 	player.posX = event.pageX;
+			 	player.posY = event.pageY;
+			 	player.direction = "s";
+		    });			
+			function getRandomColor() {
+			    var letters = '0123456789ABCDEF'.split('');
+			    var color = '#';
+			    for (var i = 0; i < 6; i++ ) {
+			        color += letters[Math.floor(Math.random() * 16)];
+			    }
+			    return color;
+			}
+			function setBackground()
+			{
+				ctx.save();
+				ctx.fillStyle = "black";		
+				ctx.fillRect(0,0,cWidth,cHeight);
+				ctx.strokeStyle = "black";
+				ctx.lineWidth =  2;
+				ctx.strokeRect(0,0,cWidth,cHeight);
+				ctx.restore();
+			}
+			function drawScore(){
+				var text = "Best Score: "+BestScore +" Score: "+score + " Muertes: "+deaths;
+				ctx.font = "20px Arial";
+				ctx.fillStyle = "white";
+				ctx.fillText(text,10,30);
+			}
+			function drawPlayer(){
+				ctx.save();
+				ctx.fillStyle = "blue";		
+				ctx.fillRect(player.posX,player.posY,player.width,player.height);
+				ctx.restore();				
+			}
+			function drawCoin(){
+				if(coin.draw)
+				{
+					var img = new Image();
+					img.src = "Imagen/moneda.png";
+					ctx.drawImage(img,coin.posX,coin.posY,20,20);						
+					
+				}					
+			}
+			var primeros = true;
+			function setSkillsEnemies(number)
+			{
+				console.log(numberOfEnemiesTemp+"-"+numberOfEnemies);
+				ctx.save();
+				if(numberOfEnemiesTemp < numberOfEnemies)
+				{			
+					
+					for(var i = 0; i < number; i++)
+					{
+						var tam = (Math.random()*45)+7;
+						posX = Math.random()*(cWidth-tam);
+						posY =Math.random()*(cHeight-tam);
+						changeX =(Math.random()*35)+1;
+						changeY = (Math.random()*35)+1;
+						if(primeros)
+						{
+							console.log("1");
+							enemy[i].height = tam;
+							enemy[i].width= tam;
+							enemy[i].posX = posX ;
+							enemy[i].posY= posY;
+							enemy[i].changeX = changeX;
+							enemy[i].changeY =  changeY;					
+							enemy[i].draw = true;
+							enemy[i].color =  getRandomColor();
+							numberOfEnemiesTemp++;
+							if(i==number-1){primeros = false;}
+
+						}
+						else
+						{
+							console.log("2");
+							var nuevo = {color:getRandomColor(),draw: true,changeX:changeX,changeY:changeY,posX: posX,posY:posY, width: tam, height: tam}						
+							enemy.push(nuevo);
+							
+							numberOfEnemiesTemp++;
+						}
+						
+					}
+				}	
+				ctx.restore();	
+			}
+			function drawEnemies(number){
+				
+				ctx.save();
+								
+					for(var i = 0; i < number;i++){
+
+						if(enemy[i].draw){
+							ctx.fillStyle = enemy[i].color;
+							ctx.fillRect(enemy[i].posX,enemy[i].posY,enemy[i].width,enemy[i].height);
+
+						}
+						
+					}
+				ctx.restore();	
+			}
+			var primeraVez = true;
+			function increaseEnemies()
+			{
+				if(score/10  == level)
+				{
+					//onsole.log("YA");
+					if(primeraVez)
+					{
+						level++;
+						numberOfEnemies++;
+						primeraVez = false;	
+					}					
+				}
+			}
+			function movePlayer()
+			{
+				switch(player.direction){
+					case "r":
+						player.posX += 20;
+						break;
+					case "l":
+						player.posX -= 20;
+						break;
+					case "t":
+						player.posY -= 20;
+						break;
+					case "d":
+						player.posY += 20;
+						break;
+					default:
+						player.posX = player.posX;
+						player.posY = player.posY;
+				}
+				
+			}
+			function moveEnemies(number)
+			{				
+				for( var i = 0; i < numberOfEnemies; i++)
+				{
+					enemy[i].posX += enemy[i].changeX;
+					enemy[i].posY += enemy[i].changeY;
+				}
+			}
+			function borderCollisionEnemy(number){
+				for(var i = 0; i <numberOfEnemies; i++)
+				{
+					if (enemy[i].posX+enemy[i].width > cWidth || enemy[i].posX < 0) {
+			            enemy[i].changeX = -enemy[i].changeX;
+			        }
+			        if (enemy[i].posY+enemy[i].height > cHeight || enemy[i].posY< 0) {
+			            enemy[i].changeY = -enemy[i].changeY;
+			        }
+				}				
+			}
+			function borderCollision(){
+				
+
+				if(player.posY <= 5 /*&& player.direction == "t*/)
+				{
+					player.posY = 0;
+					player.direction = "s"
+				}
+				else if(player.posX <= 5 /*&& player.direction == "l"*/)
+				{
+					player.posX = 0;
+					player.direction = "s"
+				}
+				else if(player.posX + player.width >=cWidth /*&& player.direction == "r"*/)
+				{
+					player.posX = cWidth-player.width;
+					player.direction = "s"
+				}
+				else if(player.posY + player.height >=cHeight/* && player.direction == "d"*/)
+				{
+					player.posY = cHeight-player.height;
+					player.direction = "s"
+				}
+			}
+			function enemyCollision()
+			{
+				for(var i = 0; i <numberOfEnemies; i++)
+				{
+					if(enemy[i].draw &&
+						player.posX+ player.width > enemy[i].posX &&
+						player.posX<enemy[i].posX + enemy[i].width &&
+						player.posY< enemy[i].posY+ enemy[i].height &&
+						player.posY + player.height > enemy[i].posY
+					){
+						if(score > BestScore)
+						{
+							BestScore = score;
+						}
+						level = 1;
+						deaths++;
+						score = 0;
+						enemy.length = 0;
+						crearPrimeros();
+						numberOfEnemies = 3;
+						numberOfEnemiesTemp = 0;
+						primeros = true;
+						player.posX = (cHeight/2)-20;
+						player.posY = (cHeight/2)-20;
+						
+					}
+				}
+			}
+			function coinCollision()
+			{
+				//primero se ve si esta dibujado
+				//se ve ve que el lado izquierdo del jugador es mas grande que el de la moneda
+				//se ve que ellado izquierdo del jugador es mas pequeño que el lado izquierdo de la moneda
+				if(coin.draw &&
+					player.posX+ player.width > coin.posX &&
+					player.posX<coin.posX + 20 &&
+					player.posY< coin.posY+ 20 &&
+					player.posY + player.height > coin.posY
+				){
+					coin.draw = false;
+					score+=1;
+					primeraVez= true;
+        			$('body').append('<embed src="Sonido/coin.wav" autostart="true" hidden="true" loop="false">');
+					if(player.width < 50 && player.height < 30){
+						player.width += 5;
+						player.height += 5;
+					}
+				}
+			}
+			function coinProbability(){
+				//(Math.randmm()*50)+1 *numero entre 1 y 50*
+				if(!coin.draw)
+				{
+					coin.posX = Math.floor(Math.random()*(cWidth-20));
+					coin.posY = Math.floor(Math.random()*(cHeight-20));
+					coin.draw = true;
+					console.log(coin.posX+" "+coin.posY);
+				}
+					
+			}
+			
+						
+		}
+		
+	</script>
+</head>
+<body>
+	 
+
+	
+	<canvas id = "miCanvas" > Tu  navegador no es compatible con cancas!</canvas>
+	<audio src="Sonido/music.wav" autoplay="true" loop="true" hidden = "true"></audio>
+
+</body>
+</html>
