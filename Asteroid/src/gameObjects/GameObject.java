@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import math.Vector2D;
 
 public abstract class GameObject {
+
 	protected BufferedImage texture;
 	protected Vector2D position;
 	

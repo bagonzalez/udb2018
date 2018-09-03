@@ -1,10 +1,13 @@
 package graficos;
 
+import java.awt.Font;
 import java.awt.image.BufferedImage;
+
+import javax.sound.sampled.Clip;
 
 public class Assets {
 	
-	public static BufferedImage player;
+public static BufferedImage player;
 	
 	// efectos
 	
@@ -25,7 +28,7 @@ public class Assets {
 	public static BufferedImage[] smalls = new BufferedImage[2];
 	public static BufferedImage[] tinies = new BufferedImage[2];
 	
-	// ufo
+	// enemigo - ufo
 	
 	public static BufferedImage ufo;
 	
@@ -34,6 +37,13 @@ public class Assets {
 	public static BufferedImage[] numbers = new BufferedImage[11];
 	
 	public static BufferedImage life;
+	
+	// fuentes
+	
+	public static Font fontBig;
+	public static Font fontMed;
+	
+	public static Clip backgroundMusic, explosion, playerLoose, playerShoot, ufoShoot;
 	
 	public static void init()
 	{
@@ -50,6 +60,10 @@ public class Assets {
 		ufo = Loader.ImageLoader("/ships/ufo.png");
 		
 		life = Loader.ImageLoader("/others/life.png");
+		
+		fontBig = Loader.loadFont("/fonts/futureFont.ttf", 42);
+		
+		fontMed = Loader.loadFont("/fonts/futureFont.ttf", 20);
 		
 		for(int i = 0; i < bigs.length; i++)
 			bigs[i] = Loader.ImageLoader("/meteors/big"+(i+1)+".png");
@@ -69,6 +83,13 @@ public class Assets {
 		for(int i = 0; i < numbers.length; i++)
 			numbers[i] = Loader.ImageLoader("/numbers/"+i+".png");
 		
+		backgroundMusic = Loader.loadSound("/sounds/backgroundMusic.wav");
+		explosion = Loader.loadSound("/sounds/explosion.wav");
+		playerLoose = Loader.loadSound("/sounds/playerLoose.wav");
+		playerShoot = Loader.loadSound("/sounds/playerShoot.wav");
+		ufoShoot = Loader.loadSound("/sounds/ufoShoot.wav");
+		
+		
 	}
-	
+
 }

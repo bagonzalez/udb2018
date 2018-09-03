@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import estados.GameState;
+import graficos.Assets;
+import graficos.Sound;
 import math.Vector2D;
 
 public abstract class MovingObject extends GameObject{
@@ -17,6 +19,8 @@ public abstract class MovingObject extends GameObject{
 	protected int height;
 	protected GameState gameState;
 	
+	private Sound explosion;
+	
 	public MovingObject(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, GameState gameState) {
 		super(position, texture);
 		this.velocity = velocity;
@@ -25,6 +29,7 @@ public abstract class MovingObject extends GameObject{
 		width = texture.getWidth();
 		height = texture.getHeight();
 		angle = 0;
+		explosion = new Sound(Assets.explosion);
 		
 	}
 	
@@ -67,6 +72,8 @@ public abstract class MovingObject extends GameObject{
 	
 	protected void Destroy(){
 		gameState.getMovingObjects().remove(this);
+		if(!(this instanceof Laser))
+			explosion.play();
 	}
 	
 	protected Vector2D getCenter(){

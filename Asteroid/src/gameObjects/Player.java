@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 
 import estados.GameState;
 import graficos.Assets;
+import graficos.Sound;
 import input.KeyBoard;
 import main.Ventana;
 import math.Vector2D;
@@ -20,9 +21,10 @@ public class Player extends MovingObject{
 	private Cronometro fireRate;
 	
 	private boolean spawning, visible;
+	
 	private Cronometro spawnTime, flickerTime;
-
-
+	
+	private Sound shoot, loose;
 	
 	public Player(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, GameState gameState) {
 		super(position, velocity, maxVel, texture, gameState);
@@ -31,6 +33,8 @@ public class Player extends MovingObject{
 		fireRate = new Cronometro();
 		spawnTime = new Cronometro();
 		flickerTime = new Cronometro();
+		shoot = new Sound(Assets.playerShoot);
+		loose = new Sound(Assets.playerLoose);
 	}
 	
 	@Override
@@ -64,8 +68,12 @@ public class Player extends MovingObject{
 					gameState
 					));
 			fireRate.run(Constants.FIRERATE);
+			shoot.play();
 		}
 		
+		if(shoot.getFramePosition() > 8500) {
+			shoot.stop();
+		}
 		
 		if(KeyBoard.RIGHT)
 			angle += Constants.DELTAANGLE;
@@ -112,6 +120,7 @@ public class Player extends MovingObject{
 	public void Destroy() {
 		spawning = true;
 		spawnTime.run(Constants.SPAWNING_TIME);
+		loose.play();
 		resetValues();
 		gameState.subtractLife();
 	}
@@ -120,8 +129,7 @@ public class Player extends MovingObject{
 		
 		angle = 0;
 		velocity = new Vector2D();
-		position = new Vector2D(Constants.WIDTH/2 - Assets.player.getWidth()/2,
-				Constants.HEIGHT/2 - Assets.player.getHeight()/2);
+		position = GameState.PLAYER_START_POSITION;
 	}
 	
 	@Override
@@ -156,9 +164,6 @@ public class Player extends MovingObject{
 		
 	}
 	
-	public boolean isSpawning() 
-	{
-		return spawning;
-	}
+	public boolean isSpawning() {return spawning;}
 	
 }

@@ -14,8 +14,7 @@ import input.KeyBoard;
 
 public class Ventana extends JFrame implements Runnable{
 	
-	
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 	
 	private Canvas canvas;
 	private Thread thread;

@@ -8,11 +8,12 @@ import java.util.ArrayList;
 
 import estados.GameState;
 import graficos.Assets;
+import graficos.Sound;
 import math.Vector2D;
 
 public class Ufo extends MovingObject{
 	
-	private ArrayList<Vector2D> path;
+private ArrayList<Vector2D> path;
 	
 	private Vector2D currentNode;
 	
@@ -22,6 +23,8 @@ public class Ufo extends MovingObject{
 	
 	private Cronometro fireRate;
 	
+	private Sound shoot;
+	
 	public Ufo(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture,
 			ArrayList<Vector2D> path, GameState gameState) {
 		super(position, velocity, maxVel, texture, gameState);
@@ -30,6 +33,7 @@ public class Ufo extends MovingObject{
 		following = true;
 		fireRate = new Cronometro();
 		fireRate.run(Constants.UFO_FIRE_RATE);
+		shoot = new Sound(Assets.ufoShoot);
 	}
 	
 	private Vector2D pathFollowing() {
@@ -106,6 +110,12 @@ public class Ufo extends MovingObject{
 			
 			fireRate.run(Constants.UFO_FIRE_RATE);
 			
+			shoot.play();
+			
+		}
+		
+		if(shoot.getFramePosition() > 8500) {
+			shoot.stop();
 		}
 		
 		angle += 0.05;
@@ -116,7 +126,7 @@ public class Ufo extends MovingObject{
 	}
 	@Override
 	public void Destroy() {
-		gameState.addScore(Constants.UFO_SCORE);
+		gameState.addScore(Constants.UFO_SCORE, position);
 		super.Destroy();
 	}
 	
