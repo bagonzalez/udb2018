@@ -10,7 +10,7 @@ import math.Vector2D;
 
 public class Meteor extends MovingObject{
 
-	private Size size;
+private Size size;
 	
 	public Meteor(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, GameState gameState, Size size) {
 		super(position, velocity, maxVel, texture, gameState);
@@ -40,6 +40,7 @@ public class Meteor extends MovingObject{
 	@Override
 	public void Destroy(){
 		gameState.divideMeteor(this);
+		gameState.addScore(Constants.METEOR_SCORE);
 		super.Destroy();
 	}
 	

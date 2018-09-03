@@ -31,11 +31,10 @@ public class Ufo extends MovingObject{
 		fireRate = new Cronometro();
 		fireRate.run(Constants.UFO_FIRE_RATE);
 	}
-	//camino o ruta del ufo
+	
 	private Vector2D pathFollowing() {
 		currentNode = path.get(index);
 		
-		//distancia entre nodo
 		double distanceToNode = currentNode.subtract(getCenter()).getMagnitude();
 		
 		if(distanceToNode < Constants.NODE_RADIUS) {
@@ -48,7 +47,7 @@ public class Ufo extends MovingObject{
 		return seekForce(currentNode);
 		
 	}
-	 //calcula la fuerza
+	
 	private Vector2D seekForce(Vector2D target) {
 		Vector2D desiredVelocity = target.subtract(getCenter());
 		desiredVelocity = desiredVelocity.normalize().scale(maxVel);
@@ -57,7 +56,7 @@ public class Ufo extends MovingObject{
 	
 	@Override
 	public void update() {
-		//aceleracion
+		
 		Vector2D pathFollowing;
 		
 		if(following)
@@ -74,7 +73,7 @@ public class Ufo extends MovingObject{
 		position = position.add(velocity);
 		
 		if(position.getX() > Constants.WIDTH || position.getY() > Constants.HEIGHT
-				|| position.getX() < 0 || position.getY() < 0)
+				|| position.getX() < -width || position.getY() < -height)
 			Destroy();
 		
 		// shoot
@@ -87,20 +86,23 @@ public class Ufo extends MovingObject{
 			
 			double currentAngle = toPlayer.getAngle();
 			
-			double newAngle = Math.random()*(Math.PI) - Math.PI/2 + currentAngle;
+			currentAngle += Math.random()*Constants.UFO_ANGLE_RANGE - Constants.UFO_ANGLE_RANGE / 2;
 			
-			toPlayer = toPlayer.setDirection(newAngle);
+			if(toPlayer.getX() < 0)
+				currentAngle = -currentAngle + Math.PI;
+			
+			toPlayer = toPlayer.setDirection(currentAngle);
 			
 			Laser laser = new Laser(
 					getCenter().add(toPlayer.scale(width)),
 					toPlayer,
 					Constants.LASER_VEL,
-					newAngle + Math.PI/2,
+					currentAngle + Math.PI/2,
 					Assets.redLaser,
 					gameState
 					);
 			
-			gameState.getMovingObjects().add(0, laser);
+			gameState.getMovingObjects().add(0, laser); 
 			
 			fireRate.run(Constants.UFO_FIRE_RATE);
 			
@@ -110,8 +112,14 @@ public class Ufo extends MovingObject{
 		
 		collidesWith();
 		fireRate.update();
+		
 	}
-
+	@Override
+	public void Destroy() {
+		gameState.addScore(Constants.UFO_SCORE);
+		super.Destroy();
+	}
+	
 	@Override
 	public void draw(Graphics g) {
 		
@@ -122,7 +130,7 @@ public class Ufo extends MovingObject{
 		at.rotate(angle, width/2, height/2);
 		
 		g2d.drawImage(texture, at, null);
-
+		
 	}
 	
 }
