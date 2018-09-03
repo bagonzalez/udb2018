@@ -25,6 +25,10 @@ public class Assets {
 	
 		public static BufferedImage[] exp = new BufferedImage[9];
 
+		// ufo
+		
+		public static BufferedImage ufo;
+
 	
 	public static void init()
 	{
@@ -53,6 +57,8 @@ public class Assets {
 		
 		for(int i = 0; i < exp.length; i++)
 			exp[i] = Loader.ImageLoader("/explosion/"+i+".png");
+		
+		ufo = Loader.ImageLoader("/ships/ufo.png");
 		
 	}
 
