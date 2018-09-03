@@ -23,7 +23,7 @@ public class GameState {
 	private ArrayList<Animation> explosions = new ArrayList<Animation>();
 	
 	private int score = 0;
-	private int lives = 3;
+	private int lives = 5;
 	
 	private int meteors;
 	
@@ -240,5 +240,7 @@ public class GameState {
 	public Player getPlayer() {
 		return player;
 	}
+	
+	public void subtractLife() {lives --;}
 	
 }
