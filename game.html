@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" />
+    <title>Mata-Marcianos</title>
+
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <script src="js/logica.js" type="text/javascript"></script>
+
+
+</head>
+<body onload="game.init()">
+    <div class="contenedor">
+        <div class="izquierda">
+            <h3><strong>Kill Aliens</strong></h3>
+            <p>
+                <strong>This game called kill aliens. It is similar to the space invaders game. 
+                        The player will handle a jellyfish that will shoot to the enemy ships. 
+                        The purpose is to archieve a higer score and survive from the enemy ships.
+                </strong>
+            </p>
+            <ul class="lista">
+                <li class="titulo">CONTROLS:</li>
+                <li class="izquierda">Left: </li>
+                <li class="derecha">Right: </li>
+                <li class="espacio">Shoot: </li>
+            </ul>
+        </div>
+        <div class="derecha">
+            <h3 class="tituloPuntuaciones">BEST SCORE</h3>
+            <ul id="puntuaciones"></ul>
+        </div>
+        <div class="juego">
+            <canvas id="canvas" width="500" height="550">YOUR BROWSER DOES NOT SUPPORT HTML5!</canvas>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+body{
+	background: #ccc;
+    color: #333;
+    font: 14px 'Arial',sans-serif;
+    text-align: center;
+}
+div.contenedor {
+    width: 100%;
+    margin: 0 auto;
+}
+div.izquierda, div.derecha {
+    width: 300px;
+}
+div.izquierda {
+    float: left;
+    text-align: left;
+}
+
+div.juego canvas {
+    box-shadow: 0 0 30px #000;
+}
+div.derecha {
+    float: right;
+}
+div.derecha h3.tituloPuntuaciones {
+    background: url("../img/medalla.png") no-repeat left;
+    padding: 10px;
+}
+div.derecha ul#puntuaciones {
+    width: 300px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+div.derecha ul#puntuaciones li{
+    line-height:1.5em;
+    border-bottom:1px solid #aaa;
+    float:left;
+    display:inline;
+    width: 50%;
+    padding: 10px 0;
+}
+#canvas{
+	text-align: center;
+	border: solid black;
+	background-color: #f8f9f9;
+}
+ul.lista li.izquierda {
+    background: url("../img/izquierda.png") no-repeat left;
+}
+ul.lista li.derecha {
+    background: url("../img/derecha.png") no-repeat left;
+}
+ul.lista li.espacio {
+    background: url("../img/space.gif") no-repeat left;
+}
+ul.lista li.titulo {
+    font-weight: bold;
+}
