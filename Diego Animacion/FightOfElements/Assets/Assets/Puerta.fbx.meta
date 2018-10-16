@@ -1,0 +1,205 @@
+fileFormatVersion: 2
+guid: 66b80a146232aa946ac7e4934386d522
+timeCreated: 1537807162
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Cilindro
+    100002: Nulo_
+    100004: Nulo__2
+    100006: //RootNode
+    100008: "Simetr\xEDa"
+    100010: "Tanque_de_Petr\xF3leo"
+    100012: "Tanque_de_Petr\xF3leo_1"
+    100014: "Tanque_de_Petr\xF3leo_10"
+    100016: "Tanque_de_Petr\xF3leo_10_2"
+    100018: "Tanque_de_Petr\xF3leo_11"
+    100020: "Tanque_de_Petr\xF3leo_11_2"
+    100022: "Tanque_de_Petr\xF3leo_12"
+    100024: "Tanque_de_Petr\xF3leo_12_2"
+    100026: "Tanque_de_Petr\xF3leo_1_2"
+    100028: "Tanque_de_Petr\xF3leo_2"
+    100030: "Tanque_de_Petr\xF3leo_2_2"
+    100032: "Tanque_de_Petr\xF3leo_2_3"
+    100034: "Tanque_de_Petr\xF3leo_3"
+    100036: "Tanque_de_Petr\xF3leo_3_2"
+    100038: "Tanque_de_Petr\xF3leo_4"
+    100040: "Tanque_de_Petr\xF3leo_4_2"
+    100042: "Tanque_de_Petr\xF3leo_5"
+    100044: "Tanque_de_Petr\xF3leo_5_2"
+    100046: "Tanque_de_Petr\xF3leo_6"
+    100048: "Tanque_de_Petr\xF3leo_6_2"
+    100050: "Tanque_de_Petr\xF3leo_7"
+    100052: "Tanque_de_Petr\xF3leo_7_2"
+    100054: "Tanque_de_Petr\xF3leo_8"
+    100056: "Tanque_de_Petr\xF3leo_8_2"
+    100058: "Tanque_de_Petr\xF3leo_9"
+    100060: "Tanque_de_Petr\xF3leo_9_2"
+    400000: Cilindro
+    400002: Nulo_
+    400004: Nulo__2
+    400006: //RootNode
+    400008: "Simetr\xEDa"
+    400010: "Tanque_de_Petr\xF3leo"
+    400012: "Tanque_de_Petr\xF3leo_1"
+    400014: "Tanque_de_Petr\xF3leo_10"
+    400016: "Tanque_de_Petr\xF3leo_10_2"
+    400018: "Tanque_de_Petr\xF3leo_11"
+    400020: "Tanque_de_Petr\xF3leo_11_2"
+    400022: "Tanque_de_Petr\xF3leo_12"
+    400024: "Tanque_de_Petr\xF3leo_12_2"
+    400026: "Tanque_de_Petr\xF3leo_1_2"
+    400028: "Tanque_de_Petr\xF3leo_2"
+    400030: "Tanque_de_Petr\xF3leo_2_2"
+    400032: "Tanque_de_Petr\xF3leo_2_3"
+    400034: "Tanque_de_Petr\xF3leo_3"
+    400036: "Tanque_de_Petr\xF3leo_3_2"
+    400038: "Tanque_de_Petr\xF3leo_4"
+    400040: "Tanque_de_Petr\xF3leo_4_2"
+    400042: "Tanque_de_Petr\xF3leo_5"
+    400044: "Tanque_de_Petr\xF3leo_5_2"
+    400046: "Tanque_de_Petr\xF3leo_6"
+    400048: "Tanque_de_Petr\xF3leo_6_2"
+    400050: "Tanque_de_Petr\xF3leo_7"
+    400052: "Tanque_de_Petr\xF3leo_7_2"
+    400054: "Tanque_de_Petr\xF3leo_8"
+    400056: "Tanque_de_Petr\xF3leo_8_2"
+    400058: "Tanque_de_Petr\xF3leo_9"
+    400060: "Tanque_de_Petr\xF3leo_9_2"
+    2300000: Cilindro
+    2300002: "Tanque_de_Petr\xF3leo"
+    2300004: "Tanque_de_Petr\xF3leo_1"
+    2300006: "Tanque_de_Petr\xF3leo_10"
+    2300008: "Tanque_de_Petr\xF3leo_11"
+    2300010: "Tanque_de_Petr\xF3leo_12"
+    2300012: "Tanque_de_Petr\xF3leo_2"
+    2300014: "Tanque_de_Petr\xF3leo_3"
+    2300016: "Tanque_de_Petr\xF3leo_4"
+    2300018: "Tanque_de_Petr\xF3leo_5"
+    2300020: "Tanque_de_Petr\xF3leo_6"
+    2300022: "Tanque_de_Petr\xF3leo_7"
+    2300024: "Tanque_de_Petr\xF3leo_8"
+    2300026: "Tanque_de_Petr\xF3leo_9"
+    3300000: Cilindro
+    3300002: "Tanque_de_Petr\xF3leo"
+    3300004: "Tanque_de_Petr\xF3leo_1"
+    3300006: "Tanque_de_Petr\xF3leo_10"
+    3300008: "Tanque_de_Petr\xF3leo_11"
+    3300010: "Tanque_de_Petr\xF3leo_12"
+    3300012: "Tanque_de_Petr\xF3leo_2"
+    3300014: "Tanque_de_Petr\xF3leo_3"
+    3300016: "Tanque_de_Petr\xF3leo_4"
+    3300018: "Tanque_de_Petr\xF3leo_5"
+    3300020: "Tanque_de_Petr\xF3leo_6"
+    3300022: "Tanque_de_Petr\xF3leo_7"
+    3300024: "Tanque_de_Petr\xF3leo_8"
+    3300026: "Tanque_de_Petr\xF3leo_9"
+    4300000: "Tanque_de_Petr\xF3leo_12"
+    4300002: "Tanque_de_Petr\xF3leo_11"
+    4300004: "Tanque_de_Petr\xF3leo_10"
+    4300006: "Tanque_de_Petr\xF3leo_9"
+    4300008: "Tanque_de_Petr\xF3leo_8"
+    4300010: "Tanque_de_Petr\xF3leo_7"
+    4300012: "Tanque_de_Petr\xF3leo_6"
+    4300014: "Tanque_de_Petr\xF3leo_5"
+    4300016: "Tanque_de_Petr\xF3leo_4"
+    4300018: "Tanque_de_Petr\xF3leo_3"
+    4300020: "Tanque_de_Petr\xF3leo_2"
+    4300022: "Tanque_de_Petr\xF3leo_1"
+    4300024: "Tanque_de_Petr\xF3leo"
+    4300026: Cilindro
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat
+    second: {fileID: 2100000, guid: 137137c12ce0047438ba485aa5476b8c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat.1
+    second: {fileID: 2100000, guid: 90ef74fc492db784a835a0a9f451c9b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 47213e8089aa84f44a7d73b3402afef8, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
